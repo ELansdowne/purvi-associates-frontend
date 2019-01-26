@@ -1,13 +1,13 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { withStyles } from '@material-ui/core';
-import axios from 'axios';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { withStyles } from "@material-ui/core";
+import axios from "axios";
 
 const styles = theme => ({
   button: {
@@ -17,7 +17,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 40
   },
   input: {
-    display: 'none'
+    display: "none"
   }
 });
 
@@ -25,26 +25,26 @@ class ItemDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      clientId: '',
-      name: '',
-      address: '',
-      state: '',
-      phone: '',
-      ownerName: '',
-      class: '',
-      tmName: '',
-      appliedNo: '',
-      date: '',
-      refForm: '',
-      statement: '',
-      advance: '',
-      examination: '',
-      file: '',
-      jNo: '',
-      opp: '',
-      goods: '',
-      balance: '',
+      id: "",
+      clientId: "",
+      name: "",
+      address: "",
+      state: "",
+      phone: "",
+      ownerName: "",
+      class: "",
+      tmName: "",
+      appliedNo: "",
+      date: "",
+      refForm: "",
+      statement: "",
+      advance: "",
+      examination: "",
+      file: "",
+      jNo: "",
+      opp: "",
+      goods: "",
+      balance: "",
       open: false,
       update: false
     };
@@ -68,7 +68,7 @@ class ItemDialog extends React.Component {
   }
 
   setFormData = item => {
-    console.log('item received child', item);
+    console.log("item received child", item);
     this.setState({ open: true });
     this.setState({ clientId: item.cliendId });
     this.setState({ id: item.id });
@@ -93,29 +93,29 @@ class ItemDialog extends React.Component {
 
   resetForm = () => {
     this.setState({ open: true });
-    this.setState({ clientId: '' });
-    this.setState({ id: '' });
-    this.setState({ name: '' });
-    this.setState({ address: '' });
-    this.setState({ state: '' });
-    this.setState({ phone: '' });
-    this.setState({ ownerName: '' });
-    this.setState({ class: '' });
-    this.setState({ tmName: '' });
-    this.setState({ appliedNo: '' });
-    this.setState({ date: '' });
-    this.setState({ refForm: '' });
-    this.setState({ statement: '' });
-    this.setState({ advance: '' });
-    this.setState({ examination: '' });
-    this.setState({ file: '' });
-    this.setState({ jNo: '' });
-    this.setState({ opp: '' });
-    this.setState({ goods: '' });
+    this.setState({ clientId: "" });
+    this.setState({ id: "" });
+    this.setState({ name: "" });
+    this.setState({ address: "" });
+    this.setState({ state: "" });
+    this.setState({ phone: "" });
+    this.setState({ ownerName: "" });
+    this.setState({ class: "" });
+    this.setState({ tmName: "" });
+    this.setState({ appliedNo: "" });
+    this.setState({ date: "" });
+    this.setState({ refForm: "" });
+    this.setState({ statement: "" });
+    this.setState({ advance: "" });
+    this.setState({ examination: "" });
+    this.setState({ file: "" });
+    this.setState({ jNo: "" });
+    this.setState({ opp: "" });
+    this.setState({ goods: "" });
   };
 
   handleChange(event) {
-    console.log('here is', [event.target.name], event.target.value);
+    console.log("here is", [event.target.name], event.target.value);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -123,9 +123,9 @@ class ItemDialog extends React.Component {
 
   deleteItem = () => {
     axios
-      .delete('http://localhost:3000/items/' + this.state.id, {})
+      .delete("http://localhost:3000/items/" + this.state.id, {})
       .then(result => {
-        console.log('result', result);
+        console.log("result", result);
         this.setState({ open: false });
         window.location.reload();
       })
@@ -151,7 +151,7 @@ class ItemDialog extends React.Component {
       this.setState({ open: false });
       if (this.state.update) {
         axios
-          .put('http://localhost:3000/items/' + this.state.id, {
+          .put("http://localhost:3000/items/" + this.state.id, {
             cliendId: this.state.clientId,
             name: this.state.name,
             address: this.state.address,
@@ -173,7 +173,7 @@ class ItemDialog extends React.Component {
             balance: this.state.balance
           })
           .then(response => {
-            console.log('done');
+            console.log("done");
             window.location.reload();
           })
           .catch(error => {
@@ -181,8 +181,8 @@ class ItemDialog extends React.Component {
           });
       } else {
         axios
-          .post('http://localhost:3000/items', {
-            cliendId: 'CL' + parseInt(Math.random() * 10000),
+          .post("http://localhost:3000/items", {
+            cliendId: "CL" + parseInt(Math.random() * 10000),
             name: this.state.name,
             address: this.state.address,
             state: this.state.state,
@@ -203,7 +203,7 @@ class ItemDialog extends React.Component {
             balance: this.state.balance
           })
           .then(response => {
-            console.log('done');
+            console.log("done");
             window.location.reload();
           })
           .catch(error => {
