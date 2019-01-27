@@ -6,6 +6,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const styles = {
   card: {
@@ -35,13 +38,27 @@ class Login extends PureComponent {
       items: [],
       item: null,
       password: null,
-      userName: null
+      userName: null,
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   login = () => {
+    const { history } = withRouter;
     console.log("login", this.state.userName, this.state.password);
+    axios
+      .post("http://localhost:3005/api/login", {
+        user: this.state.userName,
+        password: this.state.password
+      })
+      .then(result => {
+        console.log("result is", result);
+        this.setState({ redirect: true });
+      })
+      .catch(error => {
+        console.log("error is ", error);
+      });
   };
 
   handleChange = event => {
@@ -50,6 +67,11 @@ class Login extends PureComponent {
 
   render() {
     const { classes } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to={"/dashboard"} />;
+    }
     return (
       <Card className={classes.card}>
         <CardContent>

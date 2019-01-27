@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <Aux>
-        <Route exact path={"/"} component={Dashboard} />
+        <Route exact path={"/dashboard"} component={Dashboard} />
         <Route exact path={"/login"} component={Login} />
       </Aux>
     );
